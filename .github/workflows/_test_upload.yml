@@ -1,0 +1,16 @@
+name: TEST upload mechanism
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: make dummy asset
+        run: echo "hello $(date)" > QtTinySA_mac_arm64.dmg
+      - name: Attach to release (mirrors PR step)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "test-release-build" QtTinySA_mac_arm64.dmg --clobber --repo "$GITHUB_REPOSITORY"
