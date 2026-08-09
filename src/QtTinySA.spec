@@ -7,7 +7,7 @@ block_cipher = None
 common = {
     'pathex': [],
     'binaries': [],
-    'datas': [('QtTSAprefs.db', '.'), ('*.ui', '.')],
+    'datas': [('QtTSAprefs.db', '.'), ('*.ui', '.'), ('./modules/10_baseline.txt', '.'), ('./modules/1152_baseline.txt', '.')],
     'hiddenimports': [],
     'hookspath': [],
     'hooksconfig': {},
@@ -45,7 +45,7 @@ if sys.platform != 'darwin':
         entitlements_file=None,
         icon='tinySA.ico'
     )
-    
+
 # macOS
 else:
     exe = EXE(
@@ -73,6 +73,7 @@ else:
         exe,
         a.binaries,
         a.datas,
+        a.zipfiles,
         strip=False,
         upx=True,
         upx_exclude=[],
